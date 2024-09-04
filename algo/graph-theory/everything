@@ -1,0 +1,87 @@
+<!DOCTYPE html><html lang="vi"><head><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta charset="UTF-8"><meta name="viewport" content="user-scalable=yes, width=device-width, initial-scale=1, maximum-scale=5"><meta name="theme-color" content="#1976d2"><meta name="msapplication-TileColor" content="#1976d2"><meta name="msapplication-TileImage" content="/_assets/favicons/mstile-150x150.png"><title>Các chủ đề cơ bản về đồ thị | VNOI Wiki</title><meta name="description" content><meta property="og:title" content="Các chủ đề cơ bản về đồ thị"><meta property="og:type" content="website"><meta property="og:description" content><meta property="og:image"><meta property="og:url" content="wiki.vnoi.info/algo/graph-theory/everything"><meta property="og:site_name" content="VNOI Wiki"><link rel="apple-touch-icon" sizes="180x180" href="/_assets/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="192x192" href="/_assets/favicons/android-chrome-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="/_assets/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/_assets/favicons/favicon-16x16.png"><link rel="mask-icon" href="/_assets/favicons/safari-pinned-tab.svg" color="#1976d2"><link rel="manifest" href="/_assets/manifest.json"><script>var siteConfig = {"title":"VNOI Wiki","theme":"default","darkMode":false,"tocPosition":"right","lang":"vi","rtl":false,"company":"VNOI","contentLicense":"","footerOverride":"","logoUrl":"/uploads/vnoi.svg"}
+var siteLangs = []
+</script><link type="text/css" rel="stylesheet" href="/_assets/css/app.14bb5aad096a8ce1a4b0.css"><script type="text/javascript" src="/_assets/js/runtime.js?1703587860"></script><script type="text/javascript" src="/_assets/js/app.js?1703587860"></script><style type="text/css">.page-col-content{max-width:1012px!important;margin-left:auto;margin-right:auto;text-align:justify}.v-main a{text-decoration:none}</style></head><body><div id="root"><page locale="vi" path="algo/graph-theory/everything" title="Các chủ đề cơ bản về đồ thị" description :tags="[]" created-at="2023-12-25T11:03:22.617Z" updated-at="2023-12-25T12:35:06.453Z" author-name="Administrator" :author-id="1" editor="markdown" :is-published="true" toc="W3sidGl0bGUiOiJDw6FjIGNo4bunIMSR4buBIGPGoSBi4bqjbiB24buBIMSR4buTIHRo4buLIiwiYW5jaG9yIjoiI2PDoWMtY2jhu6ctxJHhu4EtY8ahLWLhuqNuLXbhu4EtxJHhu5MtdGjhu4siLCJjaGlsZHJlbiI6W119XQ==" :page-id="103" sidebar="W10=" nav-mode="NONE" comments-enabled effective-permissions="eyJjb21tZW50cyI6eyJyZWFkIjp0cnVlLCJ3cml0ZSI6ZmFsc2UsIm1hbmFnZSI6ZmFsc2V9LCJoaXN0b3J5Ijp7InJlYWQiOmZhbHNlfSwic291cmNlIjp7InJlYWQiOmZhbHNlfSwicGFnZXMiOnsicmVhZCI6dHJ1ZSwid3JpdGUiOmZhbHNlLCJtYW5hZ2UiOmZhbHNlLCJkZWxldGUiOmZhbHNlLCJzY3JpcHQiOmZhbHNlLCJzdHlsZSI6ZmFsc2V9LCJzeXN0ZW0iOnsibWFuYWdlIjpmYWxzZX19" edit-shortcuts="eyJlZGl0RmFiIjpmYWxzZSwiZWRpdE1lbnVCYXIiOmZhbHNlLCJlZGl0TWVudUJ0biI6ZmFsc2UsImVkaXRNZW51RXh0ZXJuYWxCdG4iOmZhbHNlLCJlZGl0TWVudUV4dGVybmFsTmFtZSI6IiIsImVkaXRNZW51RXh0ZXJuYWxJY29uIjoiIiwiZWRpdE1lbnVFeHRlcm5hbFVybCI6IiJ9" filename="algo/graph-theory/everything.md"><template slot="contents"><div><h1 id="các-chủ-đề-cơ-bản-về-đồ-thị" class="toc-header"><a class="toc-anchor" href="#các-chủ-đề-cơ-bản-về-đồ-thị">¶</a> Các chủ đề cơ bản về đồ thị</h1>
+<p><a href="/algo/basic/Tai-Lieu-Thuat-Toan" class="is-internal-link is-valid-page">Sách thầy Lê Minh Hoàng</a> đã trình bày rất chi tiết về phần lý thuyết đồ thị, do đó VNOI wiki sẽ không viết lại nữa.</p>
+<p>Trong bài viết này mình chỉ liệt kê lại các thuật toán trong đồ thị và dẫn link đến các tài liệu bổ sung:</p>
+<ul>
+<li>
+<p>Biểu diễn đồ thị:</p>
+<ul>
+<li><a href="http://cowboycoder.tech/article/ly-thuyet-do-thi-co-ban-phan-1-gioi-thieu" class="is-external-link">cowboycoder</a></li>
+<li>Bài tập:
+<ul>
+<li><a href="https://oj.vnoi.info/problem/graph/" class="is-external-link">VNOJ - GRAPH</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>BFS, DFS, Topo sort:</p>
+<ul>
+<li><a href="http://cowboycoder.tech/article/ly-thuyet-do-thi-co-ban-tim-kiem-theo-chieu-rong-tren-do-thi-breadth-first-search-bfs" class="is-external-link">cowboycoder - BFS</a></li>
+<li><a href="http://cowboycoder.tech/article/ly-thuyet-do-thi-co-ban-phan-3-tim-kiem-theo-chieu-sau-tren-do-thi-depth-first-search-dfs" class="is-external-link">cowboycoder - DFS</a></li>
+<li><a href="http://cowboycoder.tech/article/ly-thuyet-do-thi-co-ban-phan-5-dag-va-sap-xep-topo-tren-do-thi" class="is-external-link">cowboycoder - Topo sort</a></li>
+<li><a href="https://vietcodes.github.io/algo/biconnect" class="is-external-link">vietcodes - Thành phần song liên thông</a></li>
+<li><a href="https://vnoi.info/wiki/algo/graph-theory/Depth-First-Search-Tree.md" class="is-external-link">Bài toán khớp cầu, thành phần liên thông mạnh</a> (Cây DFS và ứng dụng)</li>
+<li><a href="https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/DfsTree/BridgeArticulation.h" class="is-external-link">Code tìm khớp cầu C++ - RR</a>; <a href="https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/DfsTree/BridgeArticulation.cpp" class="is-external-link">cách sử dụng</a></li>
+<li><a href="https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/DfsTree/StronglyConnected.h" class="is-external-link">Code tìm thành phần liên thông mạnh C++ - RR</a>; <a href="https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/DfsTree/StronglyConnected.cpp" class="is-external-link">cách sử dụng</a></li>
+<li><a href="https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/DfsTree/BiconnectedComponent.h" class="is-external-link">Code tìm thành phần song liên thông C++ - RR</a>; <a href="https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/DfsTree/BiconnectedComponent.cpp" class="is-external-link">cách sử dụng</a>;</li>
+<li><a href="http://vnoi.info/problems/list/?tag=37&amp;page=1" class="is-external-link">Bài tập trên VNOI</a></li>
+<li><a href="https://open.kattis.com/problems/heightpreservation" class="is-external-link">Bài H - ACM ICPC Vietnam Regional 2017</a>; <a href="http://icpcvn.github.io/2017/regional/Editorial.pdf" class="is-external-link">Lời giải</a></li>
+</ul>
+</li>
+<li>
+<p>Tìm đường đi ngắn nhất: Dijkstra, Floyd, Ford-Bellman:</p>
+<ul>
+<li><a href="http://cowboycoder.tech/article/ly-thuyet-do-thi-co-ban-phan-4-duong-di-ngan-nhat-tren-do-thi-va-thuat-toan-dijkstra" class="is-external-link">cowboycoder - Dijkstra</a></li>
+<li><a href="https://vietcodes.github.io/algo/improved-dijkstra" class="is-external-link">vietcodes - Dijkstra cải tiến</a></li>
+<li><a href="http://vnoi.info/problems/list/?tag=39&amp;page=1" class="is-external-link">Bài tập</a></li>
+</ul>
+</li>
+<li>
+<p>Cây khung nhỏ nhất:</p>
+<ul>
+<li><a href="http://vnoi.info/contributor/algo/data-structures/disjoint-set" class="is-external-link">VNOI - Disjoint Set</a></li>
+<li><a href="http://vnoi.info/problems/list/?tag=40&amp;page=1" class="is-external-link">Bài tập</a></li>
+</ul>
+</li>
+<li>
+<p>Chu trình Euler:</p>
+<ul>
+<li><a href="https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/Misc/EulerPath.h" class="is-external-link">Code C++ - RR</a></li>
+<li><a href="http://vnoi.info/problems/list/?tag=38&amp;page=1" class="is-external-link">Bài tập</a></li>
+</ul>
+</li>
+<li>
+<p>Luồng cực đại:</p>
+<ul>
+<li><a href="https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/MaxFlow/MaxFlowDinic.h" class="is-external-link">Code luồng Dinic C++ - RR</a></li>
+<li><a href="http://vnoi.info/problems/list/?tag=41&amp;page=1" class="is-external-link">Bài tập</a></li>
+</ul>
+</li>
+<li>
+<p>Cặp ghép:</p>
+<ul>
+<li><a href="https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/Matching/Matching.h" class="is-external-link">Code cặp ghép không trọng số C++ - RR</a></li>
+<li><a href="https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/Matching/HungarianLMH.h" class="is-external-link">Code Cặp ghép có trọng số C++ - RR</a></li>
+<li><a href="http://vnoi.info/problems/list/?tag=42&amp;page=1" class="is-external-link">Bài tập</a></li>
+<li><a href="https://open.kattis.com/problems/engaging" class="is-external-link">Bài E - ACM ICPC Vietnam Regional 2017</a></li>
+</ul>
+</li>
+<li>
+<p>2-SAT:</p>
+<ul>
+<li><a href="https://drive.google.com/file/d/15UbO4GWo1G6cUBDnV6uWk0KxjuEdurCG/view?usp=sharing" class="is-external-link">2-SAT - Phạm Lê Quang</a></li>
+<li><a href="https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/Misc/2sat.cpp" class="is-external-link">Code C++ - RR</a></li>
+<li><a href="http://vnoi.info/problems/list/?tag=70&amp;page=1" class="is-external-link">Bài tập</a></li>
+</ul>
+</li>
+<li>
+<p>LCA:</p>
+<ul>
+<li><a href="https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/DataStructure/LCA_RMQ.h" class="is-external-link">Code C++ - RR</a></li>
+<li><a href="http://vnoi.info/problems/list/?tag=77&amp;page=1" class="is-external-link">Bài tập</a></li>
+</ul>
+</li>
+</ul>
+</div></template><template slot="comments"><div><comments></comments></div></template></page></div><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'8bdcd1dbec2c3fbc',t:'MTcyNTQ0MDc0Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body></html>

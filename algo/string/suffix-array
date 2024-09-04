@@ -1,0 +1,120 @@
+<!DOCTYPE html><html lang="vi"><head><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta charset="UTF-8"><meta name="viewport" content="user-scalable=yes, width=device-width, initial-scale=1, maximum-scale=5"><meta name="theme-color" content="#1976d2"><meta name="msapplication-TileColor" content="#1976d2"><meta name="msapplication-TileImage" content="/_assets/favicons/mstile-150x150.png"><title>Mảng hậu tố (Suffix Array) | VNOI Wiki</title><meta name="description" content><meta property="og:title" content="Mảng hậu tố (Suffix Array)"><meta property="og:type" content="website"><meta property="og:description" content><meta property="og:image"><meta property="og:url" content="wiki.vnoi.info/algo/string/suffix-array"><meta property="og:site_name" content="VNOI Wiki"><link rel="apple-touch-icon" sizes="180x180" href="/_assets/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="192x192" href="/_assets/favicons/android-chrome-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="/_assets/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/_assets/favicons/favicon-16x16.png"><link rel="mask-icon" href="/_assets/favicons/safari-pinned-tab.svg" color="#1976d2"><link rel="manifest" href="/_assets/manifest.json"><script>var siteConfig = {"title":"VNOI Wiki","theme":"default","darkMode":false,"tocPosition":"right","lang":"vi","rtl":false,"company":"VNOI","contentLicense":"","footerOverride":"","logoUrl":"/uploads/vnoi.svg"}
+var siteLangs = []
+</script><link type="text/css" rel="stylesheet" href="/_assets/css/app.14bb5aad096a8ce1a4b0.css"><script type="text/javascript" src="/_assets/js/runtime.js?1703587860"></script><script type="text/javascript" src="/_assets/js/app.js?1703587860"></script><style type="text/css">.page-col-content{max-width:1012px!important;margin-left:auto;margin-right:auto;text-align:justify}.v-main a{text-decoration:none}</style></head><body><div id="root"><page locale="vi" path="algo/string/suffix-array" title="Mảng hậu tố (Suffix Array)" description :tags="[]" created-at="2023-12-25T11:02:05.381Z" updated-at="2024-09-04T04:33:08.120Z" author-name="Hiển" :author-id="8" editor="markdown" :is-published="true" toc="W3sidGl0bGUiOiJN4bqjbmcgaOG6rXUgdOG7kSAoU3VmZml4IEFycmF5KSIsImFuY2hvciI6IiNt4bqjbmctaOG6rXUtdOG7kS1zdWZmaXgtYXJyYXkiLCJjaGlsZHJlbiI6W119LHsidGl0bGUiOiJUw6BpIGxp4buHdSB0aGFtIGto4bqjbzoiLCJhbmNob3IiOiIjdMOgaS1saeG7h3UtdGhhbS1raOG6o28iLCJjaGlsZHJlbiI6W119XQ==" :page-id="85" sidebar="W10=" nav-mode="NONE" comments-enabled effective-permissions="eyJjb21tZW50cyI6eyJyZWFkIjp0cnVlLCJ3cml0ZSI6ZmFsc2UsIm1hbmFnZSI6ZmFsc2V9LCJoaXN0b3J5Ijp7InJlYWQiOmZhbHNlfSwic291cmNlIjp7InJlYWQiOmZhbHNlfSwicGFnZXMiOnsicmVhZCI6dHJ1ZSwid3JpdGUiOmZhbHNlLCJtYW5hZ2UiOmZhbHNlLCJkZWxldGUiOmZhbHNlLCJzY3JpcHQiOmZhbHNlLCJzdHlsZSI6ZmFsc2V9LCJzeXN0ZW0iOnsibWFuYWdlIjpmYWxzZX19" edit-shortcuts="eyJlZGl0RmFiIjpmYWxzZSwiZWRpdE1lbnVCYXIiOmZhbHNlLCJlZGl0TWVudUJ0biI6ZmFsc2UsImVkaXRNZW51RXh0ZXJuYWxCdG4iOmZhbHNlLCJlZGl0TWVudUV4dGVybmFsTmFtZSI6IiIsImVkaXRNZW51RXh0ZXJuYWxJY29uIjoiIiwiZWRpdE1lbnVFeHRlcm5hbFVybCI6IiJ9" filename="algo/string/suffix-array.md"><template slot="contents"><div><h1 id="mảng-hậu-tố-suffix-array" class="toc-header"><a class="toc-anchor" href="#mảng-hậu-tố-suffix-array">¶</a> Mảng hậu tố (Suffix Array)</h1>
+<p><strong>Mảng Hậu Tố</strong> là một CTDL giúp <strong>sort</strong> các <strong>hậu tố</strong> theo <strong>thứ tự từ điển</strong>.</p>
+<p>Mảng này chứa các số nguyên, khởi đầu của các hậu tố.</p>
+<p>Có 2 cách để xây dựng một mảng hậu tố:</p>
+<ol>
+<li><strong>Thuật toán không xác định:</strong> Sử dụng thuật toán <strong>Rabin-Karp</strong> và kiểm tra nếu một hậu tố có thứ tự từ điển nhỏ hơn một hậu tố khác,tìm <strong>mảng tiền tố chung lớn nhất</strong> (<strong>LCP</strong>), sau đó sử dụng <strong>Tìm Kiếm Nhị Phân</strong> và <strong>hàm băm</strong> (<strong>Hash</strong>) và kiểm tra ký tự tiếp theo sau <strong>LCP</strong> của chúng.</li>
+</ol>
+<p><em>Code C++:</em></p>
+<pre class="prismjs line-numbers" data-start="1" v-pre="true"><code class="language-cpp">
+namespace HashSuffixArray {
+
+    const int MAXN = 1 &lt;&lt; 21;
+
+    typedef unsigned long long hash;
+    const hash BASE = 137;
+
+    int N;
+    char * S;
+    int sa[MAXN];
+    hash h[MAXN], hPow[MAXN];
+
+    #define getHash(lo, size) (h[lo] - h[(lo) + (size)] * hPow[size])
+
+    inline bool sufCmp(int i, int j)
+    {
+        int lo = 1, hi = min(N - i, N - j);
+        while (lo &lt;= hi)
+        {
+            int mid = (lo + hi) &gt;&gt; 1;
+            if (getHash(i, mid) == getHash(j, mid))
+                lo = mid + 1;
+            else
+                hi = mid - 1;
+        }
+        return S[i + hi] &lt; S[j + hi];
+    }
+
+    void buildSA()
+    {
+        N = strlen(S);
+        hPow[0] = 1;
+        for (int i = 1; i &lt;= N; ++i)
+            hPow[i] = hPow[i - 1] * BASE;
+        h[N] = 0;
+        for (int i = N - 1; i &gt;= 0; --i)
+            h[i] = h[i + 1] * BASE + S[i], sa[i] = i;
+
+        stable_sort(sa, sa + N, sufCmp);
+    }
+
+} // end namespace HashSuffixArray
+
+</code></pre>
+<ol start="2">
+<li><strong>Thuật toán xác định:</strong> Sort log(Độ dài lớn nhất) bước, với bước thứ i (tính từ 0), sort chúng theo <svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.871ex" height="1.879ex" role="img" focusable="false" viewBox="0 -830.4 827 830.4" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-1-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path id="MJX-1-TEX-I-1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><use data-c="32" xlink:href="#MJX-1-TEX-N-32"></use></g><g data-mml-node="mi" transform="translate(533,363) scale(0.707)"><use data-c="1D456" xlink:href="#MJX-1-TEX-I-1D456"></use></g></g></g></g></svg> ký tự đầu tiên và đưa hậu tố có cùng tiền tố với <svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.871ex" height="1.879ex" role="img" focusable="false" viewBox="0 -830.4 827 830.4" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-2-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path id="MJX-2-TEX-I-1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><use data-c="32" xlink:href="#MJX-2-TEX-N-32"></use></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><use data-c="1D456" xlink:href="#MJX-2-TEX-I-1D456"></use></g></g></g></g></g></svg> ký tự vào cùng một bucket.</li>
+</ol>
+<p><em>Code:</em></p>
+<pre class="prismjs line-numbers" data-start="1" v-pre="true"><code class="language-cpp">
+/*
+Suffix array O(n lg^2 n)
+LCP table O(n)
+*/
+#include &lt;cstdio&gt;
+#include &lt;algorithm&gt;
+#include &lt;cstring&gt;
+
+using namespace std;
+
+#define REP(i, n) for (int i = 0; i &lt; (int)(n); ++i)
+
+namespace SuffixArray
+{
+    const int MAXN = 1 &lt;&lt; 21;
+    char * S;
+    int N, gap;
+    int sa[MAXN], pos[MAXN], tmp[MAXN], lcp[MAXN];
+
+    bool sufCmp(int i, int j)
+    {
+        if (pos[i] != pos[j])
+            return pos[i] &lt; pos[j];
+        i += gap;
+        j += gap;
+        return (i &lt; N &amp;&amp; j &lt; N) ? pos[i] &lt; pos[j] : i &gt; j;
+    }
+
+    void buildSA()
+    {
+        N = strlen(S);
+        REP(i, N) sa[i] = i, pos[i] = S[i];
+        for (gap = 1;; gap *= 2)
+        {
+            sort(sa, sa + N, sufCmp);
+            REP(i, N - 1) tmp[i + 1] = tmp[i] + sufCmp(sa[i], sa[i + 1]);
+            REP(i, N) pos[sa[i]] = tmp[i];
+            if (tmp[N - 1] == N - 1) break;
+        }
+    }
+
+    void buildLCP()
+    {
+        for (int i = 0, k = 0; i &lt; N; ++i) if (pos[i] != N - 1)
+        {
+            for (int j = sa[pos[i] + 1]; S[i + k] == S[j + k];)
+            ++k;
+            lcp[pos[i]] = k;
+            if (k)--k;
+        }
+    }
+} // end namespace SuffixArray
+
+</code></pre>
+<p>Source: <a href="http://codeforces.com/profile/mukel" class="is-external-link">mukel</a></p>
+<h1 id="tài-liệu-tham-khảo" class="toc-header"><a class="toc-anchor" href="#tài-liệu-tham-khảo">¶</a> Tài liệu tham khảo:</h1>
+<ul>
+<li><a href="http://codeforces.com/blog/entry/15729" class="is-external-link">Codeforces</a></li>
+</ul>
+</div></template><template slot="comments"><div><comments></comments></div></template></page></div><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'8bdcd1c8bf443fbc',t:'MTcyNTQ0MDc0My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body></html>
