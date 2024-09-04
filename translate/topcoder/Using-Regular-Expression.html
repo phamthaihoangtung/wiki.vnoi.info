@@ -1,0 +1,261 @@
+<!DOCTYPE html><html lang="vi"><head><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta charset="UTF-8"><meta name="viewport" content="user-scalable=yes, width=device-width, initial-scale=1, maximum-scale=5"><meta name="theme-color" content="#1976d2"><meta name="msapplication-TileColor" content="#1976d2"><meta name="msapplication-TileImage" content="/_assets/favicons/mstile-150x150.png"><title>Sử dụng Regex | VNOI Wiki</title><meta name="description" content><meta property="og:title" content="Sử dụng Regex"><meta property="og:type" content="website"><meta property="og:description" content><meta property="og:image"><meta property="og:url" content="wiki.vnoi.info/translate/topcoder/Using-Regular-Expression"><meta property="og:site_name" content="VNOI Wiki"><link rel="apple-touch-icon" sizes="180x180" href="/_assets/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="192x192" href="/_assets/favicons/android-chrome-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="/_assets/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/_assets/favicons/favicon-16x16.png"><link rel="mask-icon" href="/_assets/favicons/safari-pinned-tab.svg" color="#1976d2"><link rel="manifest" href="/_assets/manifest.json"><script>var siteConfig = {"title":"VNOI Wiki","theme":"default","darkMode":false,"tocPosition":"right","lang":"vi","rtl":false,"company":"VNOI","contentLicense":"","footerOverride":"","logoUrl":"/uploads/vnoi.svg"}
+var siteLangs = []
+</script><link type="text/css" rel="stylesheet" href="/_assets/css/app.14bb5aad096a8ce1a4b0.css"><script type="text/javascript" src="/_assets/js/runtime.js?1703587860"></script><script type="text/javascript" src="/_assets/js/app.js?1703587860"></script><style type="text/css">.page-col-content{max-width:1012px!important;margin-left:auto;margin-right:auto;text-align:justify}.v-main a{text-decoration:none}</style></head><body><div id="root"><page locale="vi" path="translate/topcoder/Using-Regular-Expression" title="Sử dụng Regex" description :tags="[]" created-at="2023-12-25T11:07:38.688Z" updated-at="2023-12-25T12:38:13.718Z" author-name="Administrator" :author-id="1" editor="markdown" :is-published="true" toc="W3sidGl0bGUiOiJT4butIGThu6VuZyBSZWdleCIsImFuY2hvciI6IiNz4butLWThu6VuZy1yZWdleCIsImNoaWxkcmVuIjpbXX0seyJ0aXRsZSI6Ikdp4bubaSB0aGnhu4d1IiwiYW5jaG9yIjoiI2dp4bubaS10aGnhu4d1IiwiY2hpbGRyZW4iOltdfSx7InRpdGxlIjoiTcO0IHThuqMgcmVnZXgiLCJhbmNob3IiOiIjbcO0LXThuqMtcmVnZXgiLCJjaGlsZHJlbiI6W119LHsidGl0bGUiOiJT4butIGThu6VuZyByZWdleCIsImFuY2hvciI6IiNz4butLWThu6VuZy1yZWdleC0xIiwiY2hpbGRyZW4iOlt7InRpdGxlIjoiRGVidWcgcmVnZXgiLCJhbmNob3IiOiIjZGVidWctcmVnZXgiLCJjaGlsZHJlbiI6W119LHsidGl0bGUiOiJUcm9uZyBKYXZhIiwiYW5jaG9yIjoiI3Ryb25nLWphdmEiLCJjaGlsZHJlbiI6W119LHsidGl0bGUiOiJUcm9uZyBDKysiLCJhbmNob3IiOiIjdHJvbmctYyIsImNoaWxkcmVuIjpbeyJ0aXRsZSI6IlBPU0lYX3JlZ2V4IiwiYW5jaG9yIjoiI3Bvc2l4X3JlZ2V4IiwiY2hpbGRyZW4iOlt7InRpdGxlIjoiVsOtIGThu6UiLCJhbmNob3IiOiIjdsOtLWThu6UiLCJjaGlsZHJlbiI6W119XX0seyJ0aXRsZSI6IkdOVV9yZWdleCIsImFuY2hvciI6IiNnbnVfcmVnZXgiLCJjaGlsZHJlbiI6W3sidGl0bGUiOiJWw60gZOG7pSIsImFuY2hvciI6IiN2w60tZOG7pS0xIiwiY2hpbGRyZW4iOltdfV19XX0seyJ0aXRsZSI6IlbDrSBk4bulIHRyb25nIGPDoWMgY3Xhu5ljIHRoaSBTUk1zIiwiYW5jaG9yIjoiI3bDrS1k4bulLXRyb25nLWPDoWMtY3Xhu5ljLXRoaS1zcm1zIiwiY2hpbGRyZW4iOltdfV19LHsidGl0bGUiOiJUaGFtIGto4bqjbyIsImFuY2hvciI6IiN0aGFtLWto4bqjbyIsImNoaWxkcmVuIjpbXX1d" :page-id="168" sidebar="W10=" nav-mode="NONE" comments-enabled effective-permissions="eyJjb21tZW50cyI6eyJyZWFkIjp0cnVlLCJ3cml0ZSI6ZmFsc2UsIm1hbmFnZSI6ZmFsc2V9LCJoaXN0b3J5Ijp7InJlYWQiOmZhbHNlfSwic291cmNlIjp7InJlYWQiOmZhbHNlfSwicGFnZXMiOnsicmVhZCI6dHJ1ZSwid3JpdGUiOmZhbHNlLCJtYW5hZ2UiOmZhbHNlLCJkZWxldGUiOmZhbHNlLCJzY3JpcHQiOmZhbHNlLCJzdHlsZSI6ZmFsc2V9LCJzeXN0ZW0iOnsibWFuYWdlIjpmYWxzZX19" edit-shortcuts="eyJlZGl0RmFiIjpmYWxzZSwiZWRpdE1lbnVCYXIiOmZhbHNlLCJlZGl0TWVudUJ0biI6ZmFsc2UsImVkaXRNZW51RXh0ZXJuYWxCdG4iOmZhbHNlLCJlZGl0TWVudUV4dGVybmFsTmFtZSI6IiIsImVkaXRNZW51RXh0ZXJuYWxJY29uIjoiIiwiZWRpdE1lbnVFeHRlcm5hbFVybCI6IiJ9" filename="translate/topcoder/Using-Regular-Expression.md"><template slot="contents"><div><h1 id="sử-dụng-regex" class="toc-header"><a class="toc-anchor" href="#sử-dụng-regex">¶</a> Sử dụng Regex</h1>
+<p>Bài viết gốc: <a href="https://www.topcoder.com/community/data-science/data-science-tutorials/using-regular-expressions-2/" class="is-external-link">Using Regular Expressions - đăng bởi Dan[Popovici] &amp; mariusmuja trên Topcoder</a></p>
+<h1 id="giới-thiệu" class="toc-header"><a class="toc-anchor" href="#giới-thiệu">¶</a> Giới thiệu</h1>
+<p>Một <strong>regex</strong> (<em>regular expression</em>) là một chuỗi ký tự đặc biệt dùng để mô tả một <strong>mẫu tìm kiếm</strong> (<strong>search pattern</strong>). Hẳn là nhiều bạn đã nhìn thấy hoặc dùng regex trong các câu lệnh như <code>ls *.txt</code> (hoặc <code>dir *.txt</code>) để liệt kê ra tất cả các file có đuôi txt. Regex rất hữu dụng không chỉ trong việc tìm kiếm trên xâu (<em>pattern matching</em>) mà còn trong việc xử lý văn bản. Trong các kỳ SRMs thì regex có thể cực kỳ hữu ích. Vài dòng code sử dụng regex trong các bài toán xử lý text có thể khiến việc lập trình trở nên dễ thở hơn nhiều.</p>
+<h1 id="mô-tả-regex" class="toc-header"><a class="toc-anchor" href="#mô-tả-regex">¶</a> Mô tả regex</h1>
+<p>Một regex là một hoặc nhiều "nhánh" không rỗng, được phân cách bởi ký tự <code>|</code>. Regex sẽ khớp với bất kỳ cái gì khớp với một trong các nhánh của nó. Regex sau sẽ khớp với bất kỳ từ nào trong 3 từ "the", "top", "coder".</p>
+<pre class="prismjs line-numbers" data-start="1" v-pre="true"><code class="language-">Regex: the|top|coder
+INPUT: Marius is one of the topcoders.
+
+Tìm thấy "the" bắt đầu ở vị trí 17 và kết thúc ở vị trí 20.
+Tìm thấy "top" bắt đầu ở vị trí 21 và kết thúc ở vị trí 24.
+Tìm thấy "coder" bắt đầu ở vị trí 24 và kết thúc ở vị trí 29.
+</code></pre>
+<p>Một nhánh bao gồm một hoặc nhiều mảnh nối vào với nhau. Nó sẽ khớp với mảnh đầu tiên trước, rồi sau đó sẽ đến mảnh thứ 2, thứ 3, v.v.</p>
+<p>Một mảnh là một nguyên tử (atom) có thể được theo sau bởi một trong các ký tự sau <code>*</code>, <code>+</code>, <code>?</code>, hoặc biên (<em>bound</em>):</p>
+<ul>
+<li>Một nguyên tử được theo sau bởi <code>*</code> sẽ khớp với chuỗi nào có 0 hoặc nhiều hơn phần khớp với nguyên tử đó.</li>
+<li>Một nguyên tử được theo sau bởi <code>+</code> sẽ khớp với chuỗi nào có 1 hoặc nhiều hơn phần khớp với nguyên tử đó.</li>
+<li>Một nguyên tử được theo sau bởi <code>?</code> sẽ khớp với chuỗi nào có 0 hoặc 1 phần khớp với nguyên tử đó.</li>
+</ul>
+<p>Regex sau sẽ khớp với chuỗi nào có chữ "top" và "coder" nối tiếp nhau:</p>
+<pre class="prismjs line-numbers" data-start="1" v-pre="true"><code class="language-">Regex: (top|coder)+
+INPUT: This regex matches topcoder, codertop, toptop, toptoptop, codercoder...
+Tìm thấy "topcoder" bắt đầu ở vị trí 19 và kết thúc ở vị trí 27.
+Tìm thấy "codertop" bắt đầu ở vị trí 37 vả kết thúc ở vị trí 45.
+</code></pre>
+<p>Một biên được bắt đầu bởi <code>{</code> được theo sau bởi 1 hoặc 2 số nguyên không dấu cách nhau bởi dấu <code>,</code>, và luôn kết thúc bởi <code>}</code>. Nếu có 2 số nguyên thì số thứ nhất sẽ không lớn hơn số thứ hai.</p>
+<ul>
+<li>Một nguyên tử theo sau bởi một biên chứa duy nhất một số nguyên <svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="0.781ex" height="1.52ex" role="img" focusable="false" viewBox="0 -661 345 672" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-1-TEX-I-1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D456" xlink:href="#MJX-1-TEX-I-1D456"></use></g></g></g></svg> thì sẽ khớp với xâu được ghép bởi đúng <svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="0.781ex" height="1.52ex" role="img" focusable="false" viewBox="0 -661 345 672" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-2-TEX-I-1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D456" xlink:href="#MJX-2-TEX-I-1D456"></use></g></g></g></svg> nguyên tử.</li>
+<li>Một nguyên tử theo sau bởi một biên chứa duy nhất một số nguyên <svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="0.781ex" height="1.52ex" role="img" focusable="false" viewBox="0 -661 345 672" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-3-TEX-I-1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D456" xlink:href="#MJX-3-TEX-I-1D456"></use></g></g></g></svg> có dấu <code>,</code> đằng sau thì sẽ khớp với xâu được ghép bởi <svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="0.781ex" height="1.52ex" role="img" focusable="false" viewBox="0 -661 345 672" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-4-TEX-I-1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D456" xlink:href="#MJX-4-TEX-I-1D456"></use></g></g></g></svg> hoặc nhiều hơn <svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="0.781ex" height="1.52ex" role="img" focusable="false" viewBox="0 -661 345 672" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-5-TEX-I-1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D456" xlink:href="#MJX-5-TEX-I-1D456"></use></g></g></g></svg> nguyên tử.</li>
+<li>Một nguyên tử theo sau bởi một biên chứa 2 số nguyên <svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="0.781ex" height="1.52ex" role="img" focusable="false" viewBox="0 -661 345 672" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-6-TEX-I-1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D456" xlink:href="#MJX-6-TEX-I-1D456"></use></g></g></g></svg>, <svg style="vertical-align: -0.462ex;" xmlns="http://www.w3.org/2000/svg" width="0.932ex" height="1.957ex" role="img" focusable="false" viewBox="0 -661 412 865" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-7-TEX-I-1D457" d="M297 596Q297 627 318 644T361 661Q378 661 389 651T403 623Q403 595 384 576T340 557Q322 557 310 567T297 596ZM288 376Q288 405 262 405Q240 405 220 393T185 362T161 325T144 293L137 279Q135 278 121 278H107Q101 284 101 286T105 299Q126 348 164 391T252 441Q253 441 260 441T272 442Q296 441 316 432Q341 418 354 401T367 348V332L318 133Q267 -67 264 -75Q246 -125 194 -164T75 -204Q25 -204 7 -183T-12 -137Q-12 -110 7 -91T53 -71Q70 -71 82 -81T95 -112Q95 -148 63 -167Q69 -168 77 -168Q111 -168 139 -140T182 -74L193 -32Q204 11 219 72T251 197T278 308T289 365Q289 372 288 376Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D457" xlink:href="#MJX-7-TEX-I-1D457"></use></g></g></g></svg> sẽ khớp với xâu được ghép bởi <svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="0.781ex" height="1.52ex" role="img" focusable="false" viewBox="0 -661 345 672" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-8-TEX-I-1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D456" xlink:href="#MJX-8-TEX-I-1D456"></use></g></g></g></svg> đến <svg style="vertical-align: -0.462ex;" xmlns="http://www.w3.org/2000/svg" width="0.932ex" height="1.957ex" role="img" focusable="false" viewBox="0 -661 412 865" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-9-TEX-I-1D457" d="M297 596Q297 627 318 644T361 661Q378 661 389 651T403 623Q403 595 384 576T340 557Q322 557 310 567T297 596ZM288 376Q288 405 262 405Q240 405 220 393T185 362T161 325T144 293L137 279Q135 278 121 278H107Q101 284 101 286T105 299Q126 348 164 391T252 441Q253 441 260 441T272 442Q296 441 316 432Q341 418 354 401T367 348V332L318 133Q267 -67 264 -75Q246 -125 194 -164T75 -204Q25 -204 7 -183T-12 -137Q-12 -110 7 -91T53 -71Q70 -71 82 -81T95 -112Q95 -148 63 -167Q69 -168 77 -168Q111 -168 139 -140T182 -74L193 -32Q204 11 219 72T251 197T278 308T289 365Q289 372 288 376Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D457" xlink:href="#MJX-9-TEX-I-1D457"></use></g></g></g></svg> nguyên tử.</li>
+</ul>
+<p>Regex sau sẽ khớp với bất kỳ xâu nào có 2, 3 hoặc 4 ký tự <code>1</code>:</p>
+<pre class="prismjs line-numbers" data-start="1" v-pre="true"><code class="language-">Regex: 1{2,4}
+INPUT: 101 + 10 = 111 , 11111 = 10000 + 1111
+Tìm thấy "111" bắt đầu ở vị trí 11 và kết thúc ở vị trí 14.
+Tìm thấy "1111" bắt đầu ở vị trí 17 và kết thúc ở vị trí 21
+Tìm thấy "1111" bắt đầu ở vị trí 33 và kết thúc ở vị trí 37.
+</code></pre>
+<p>Chúng ta có thể thấy rằng chuỗi dài nhất có thể sẽ được khớp và các đoạn được khớp sẽ không giao nhau. Một nguyên tử (atom) có thể là:</p>
+<ul>
+<li>Một regex được đặt trong dấu ngoặc tròn <code>()</code> (khớp với cả regex)</li>
+<li>Một biểu thức ngoặc (xem ví dụ)</li>
+<li><code>.</code> (khớp với bất kỳ ký tự nào)</li>
+<li><code>^</code> (khớp với xâu rỗng ở đầu dòng)</li>
+<li><code>$</code> (khớp với xâu rỗng ở cuối dòng)</li>
+<li>Ký tự <code>\</code> được theo sau bởi một trong các ký tự <code>^.[$()\|\*+?{\</code> (khớp với các ký tự đặc biệt tương ứng)</li>
+<li>Một ký tự (khớp với ký tự đó).</li>
+<li>Ký tự <code>\</code> được theo sau bởi một chữ số <svg style="vertical-align: -0.023ex;" xmlns="http://www.w3.org/2000/svg" width="1.176ex" height="1.593ex" role="img" focusable="false" viewBox="0 -694 520 704" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-10-TEX-I-1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D451" xlink:href="#MJX-10-TEX-I-1D451"></use></g></g></g></svg> khác 0. Nguyên tử này sẽ khớp với chuỗi ký tự giống với chuỗi ký tự được khớp bởi biểu thức con trong ngoặc tròn thứ <svg style="vertical-align: -0.023ex;" xmlns="http://www.w3.org/2000/svg" width="1.176ex" height="1.593ex" role="img" focusable="false" viewBox="0 -694 520 704" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-11-TEX-I-1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D451" xlink:href="#MJX-11-TEX-I-1D451"></use></g></g></g></svg> (đánh số ngoặc tròn bằng vị trí của mở ngoặc từ trái qua phải). Ví dụ: <code>([bc])\1</code> sẽ khớp với <code>bb</code> hoặc <code>cc</code> và không khớp với <code>bc</code>.</li>
+</ul>
+<p>Regex sau đây khớp với một xâu được tạo bởi 2 chữ in thường giống nhau được phân cách bởi bất kỳ ký tự nào:</p>
+<pre class="prismjs line-numbers" data-start="1" v-pre="true"><code class="language-">Regex: ([a-z]+).\1
+INPUT: top-topcoder|coder
+Tìm thấy "top-top" bắt đầu ở vị trí 0 và kết thúc ở vị trí 7.
+Tìm thấy "coder|coder" bắt đầu vở vị trí 7 và kết thúc ở vị trí 18.
+</code></pre>
+<p>Một danh sách các ký tự được viết trong dấu <code>[]</code> khớp với bất ký ký tự đơn nào ở trong danh sách.</p>
+<ul>
+<li>Nếu danh sách được bắt đầu bởi <code>^</code>, nó sẽ khớp với bất kỳ ký tự nào <strong>không</strong> ở trong danh sách.</li>
+<li>Nếu 2 ký tự trong danh sách được phân cách bởi <code>-</code> thì có nghĩa là danh sách này bao gồm tất cả các ký tự nằm trong "đoạn" với 2 đầu là 2 ký tự đó (ví dụ <code>[0-9]</code> khớp với bất kỳ chữ số thập phân nào).</li>
+</ul>
+<p>Tất cả các ký tự (ngoại trừ <code>]</code>, <code>^</code>, <code>-</code>), kể cả ký tự đặc biệt đều mất đi tính chất đặc biệt của nó trong biểu thức ngoặc.</p>
+<p>Regex sau đây khớp với các từ không bắt đầu bởi <code>b</code>, <code>c</code>, <code>d</code> và kết thúc bởi <code>at</code>:</p>
+<pre class="prismjs line-numbers" data-start="1" v-pre="true"><code class="language-">Regex: [^b-d]at
+INPUT: bat
+Không tìm thấy xâu nào khớp.
+
+Regex: [^b-d]at
+INPUT: hat
+Tìm thấy "hat" bắt đầu ở vị trí 0 và kết thúc ở vị trí 3.
+</code></pre>
+<p>Ví dụ sau đây sẽ bao gồm hầu hết các định nghĩa ở phía trên đã nêu. Nó sẽ khớp với một cặp HTML tag đóng/mở và nội dung giữa 2 tag này.</p>
+<pre class="prismjs line-numbers" data-start="1" v-pre="true"><code class="language-">Regex: &lt;([a-zA-Z][a-zA-Z0-9]*)(()| [^&gt;]*)&gt;(.*)&lt;/\1&gt;
+INPUT: &lt;font size="2"&gt;Topcoder is the&lt;/font&gt; &lt;b&gt;best&lt;/b&gt;
+Tìm thấy "&lt;font size="2"&gt;Topcoder is the&lt;/font&gt;" bắt đầu ở vị trí 0 và kết thúc ở vị trí 37.
+Tìm thấy "&lt;b&gt;best&lt;/b&gt;" bắt đầu ở vị trí 38 và kết thúc ở vị trí 49.
+</code></pre>
+<p>Giải thích:</p>
+<ul>
+<li><code>([a-zA-Z][a-zA-Z0-9]\*)</code> sẽ khớp với bất kỳ từ nào bắt đầu bởi một chữ cái và tiếp tục bởi một số lượng chữ cái hoặc chữ số bất kỳ.</li>
+<li><code>(()| [^&gt;]\*)</code> sẽ khớp với xâu rỗng hoặc bất kỳ xâu nào không chứa '&gt;'.</li>
+<li><code>\1</code> khớp với xâu nào mà <code>([a-zA-Z][a-zA-Z0-9]\*)</code> đã khớp trước đó.</li>
+</ul>
+<p>Mô tả trên là mô tả sơ qua về regex cơ bản. Một regex được viết bởi các luật trên sẽ chạy được ở Java (&gt;= 1.4) và C++ (POSIX EXTENDED). Để tìm hiểu sâu hơn về các mở rộng được cung cấp bởi các ngôn ngữ khác mời các bạn xem phần tham khảo.</p>
+<h1 id="sử-dụng-regex-1" class="toc-header"><a class="toc-anchor" href="#sử-dụng-regex-1">¶</a> Sử dụng regex</h1>
+<h2 id="debug-regex" class="toc-header"><a class="toc-anchor" href="#debug-regex">¶</a> Debug regex</h2>
+<p>Trong các ngôn ngữ lập trình khác nhau, thường regex có thể khác nhau đôi chút. Để kiểm tra 1 đoạn regex trong 1 ngôn ngữ có ý nghĩa gì, các bạn có thể lên search "debug regex online", có khá nhiều trang phù hợp.</p>
+<h2 id="trong-java" class="toc-header"><a class="toc-anchor" href="#trong-java">¶</a> Trong Java</h2>
+<p>Trong Java (từ 1.4 trở lên) có một <em>package</em> tên là <code>java.util.regex</code> cho phép sử dụng regex.</p>
+<p>Package này bao gồm 3 <em>class</em>: Pattern, Matcher, PatternSyntaxException.</p>
+<ul>
+<li>Object Pattern là một regex đã được biên dịch. Class Pattern không cung cấp public constructors. Để tạo ra một object, bạn phải sử dụng một trong các method của nó và chúng sẽ trả về một object Pattern.</li>
+<li>Object Matcher sẽ tiến hành thông dịch mẫu và khớp với input. Giống như class Pattern, Matcher không có public constructors. Để tạo ra một object Matcher bạn phải sử dụng method của class Matcher trên một object Pattern và nó sẽ trả về một object Matcher.</li>
+<li>Object PatternSyntaxException là unchecked exception chỉ ra lỗi cú pháp của regex.</li>
+</ul>
+<p>Ví dụ (lấy từ [4]):</p>
+<pre class="prismjs line-numbers" data-start="1" v-pre="true"><code class="language-java">Pattern pattern;
+Matcher matcher;
+pattern = Pattern.compile(&lt;REGEX&gt;);
+matcher = pattern.matcher(&lt;INPUT&gt;);
+boolean found;
+while(matcher.find()) {
+  System.out.println("Found the text \"" + matcher.group() +  "\" starting at index " + matcher.start() +
+      " and ending at index " + matcher.end() + ".");
+  found = true;
+}
+
+if(!found){
+  System.out.println("No match found.");
+}
+</code></pre>
+<p>Java cũng cung cấp các method sau trong class String:</p>
+<ul>
+<li><code>boolean matches(String regex)</code>: kiểm tra xem xâu hiện tại có khớp với <code>regex</code> không.</li>
+<li><code>String replaceAll(String regex, String replacement)</code>: Thay tất cả các xâu con của xâu hiện tại mà khớp với <code>regex</code> bằng xâu <code>replacement</code>.</li>
+<li><code>String replaceFirst(String regex, String replacement)</code>: Thay xâu con đầu tiên của xâu hiện tại mà khớp với <code>regex</code> bằng xâu <code>replacement</code>.</li>
+<li><code>String[] split(String regex)</code>: Chia xâu hiện tại thành nhiều xâu sử dụng các xâu con khớp với <code>regex</code> làm phân cách.</li>
+</ul>
+<h2 id="trong-c" class="toc-header"><a class="toc-anchor" href="#trong-c">¶</a> Trong C++</h2>
+<p>Nhiều topcoders cho rằng regex là một trong những điểm mạnh của Java so với C++. Tuy nhiên các coders sử dụng C++ cũng không hề nản chí vì regex cũng có thể được sử dụng trong C++.</p>
+<p>Có nhiều thư viện hỗ trợ regex cho C++, tuy nhiên chúng không tương thích với nhau tốt cho lắm. Một điều may mắn đó là bạn có thể chọn lựa một trong các thư viện này để sử dụng và không phải lo là nó không tương thích với nhau. Nếu bạn muốn dùng regex ở arena bạn phải lựa chọn giữa 2 APIs: POSIX_regex và GNU_regex. Để sử dụng 2 APIs này bạn phải thêm header "regex.h". Cả 2 APIs đều được thực hiện qua 2 bước. Đầu tiên sẽ có một hàm biên dịch regex, sau đó sẽ có một hàm khớp/tìm regex đã được biên dịch với xâu cần khớp.<br>
+Sau đây sẽ là mô tả ngắn gọn về 2 APIs này để cho các bạn có thể chọn lựa bạn thích cái nào hơn.</p>
+<h3 id="posix_regex" class="toc-header"><a class="toc-anchor" href="#posix_regex">¶</a> POSIX_regex</h3>
+<p>POSIX_regex hỗ trợ 2 kiểu regex khác nhau: cơ bản và mở rộng. Regex cơ bản tương tự như trong ed, trong khi regex mở rộng tương tự như trong egrep, thêm vào các phép toán <code>|</code>, <code>+</code>, <code>?</code> và không yêu cầu <code>\</code> ở các biểu thức con viết trong ngoặc đơn <code>()</code> hoặc các biên được viết trong ngoặc nhọn <code>{}</code>. Kiểu cơ bản là mặc định, nhưng kiểu mở rộng được ưa thích hơn.</p>
+<p>Với POSIX, bạn chỉ có thể tìm kiếm regex mà không thể khớp được. Để khớp được, bạn phải biên dịch nó thành một pattern buffer, sử dụng <code>regcomp</code>. Một khi đã biên dịch thành pattern buffer bạn có thể tìm kiếm trong một xâu kết thúc bằng null bằng cách dùng <code>regexec</code>. Nếu một trong hai hàm <code>regcomp</code> và <code>regexec</code> gặp lỗi nó sẽ trả về error code. Để biết được lỗi là gì bạn dùng <code>regerror</code>. Để giải phóng bộ nhớ của pattern buffer bạn dùng <code>regfree</code>.</p>
+<p>Để biết cách sử dụng chi tiết mời các bạn xem mục [2] và [3] ở phần tham khảo.</p>
+<h4 id="ví-dụ" class="toc-header"><a class="toc-anchor" href="#ví-dụ">¶</a> Ví dụ</h4>
+<p>Sau đây là một ví dụ về cách sử dụng các hàm này:</p>
+<pre class="prismjs line-numbers" data-start="1" v-pre="true"><code class="language-cpp">regex_t reg;
+
+string pattern = "[^tpr]{2,}";
+string str = "topcoder";
+
+regmatch_t matches[1];
+
+regcomp(&amp;reg,pattern.c_str(),REG_EXTENDED|REG_ICASE);
+
+if (regexec(&amp;reg,str.c_str(),1,matches,0)==0) {
+  cout &lt;&lt; "Match "
+  cout &lt;&lt; str.substr(matches[0].rm_so,matches[0].rm_eo-matches[0].rm_so)
+  cout &lt;&lt; " found starting at: "
+  cout &lt;&lt; matches[0].rm_so
+  cout &lt;&lt; " and ending at "
+  cout &lt;&lt; matches[0].rm_eo
+  cout &lt;&lt; endl;
+} else {
+  cout &lt;&lt; "Match not found."
+  cout &lt;&lt; endl;
+}
+regfree(&amp;reg);
+</code></pre>
+<h3 id="gnu_regex" class="toc-header"><a class="toc-anchor" href="#gnu_regex">¶</a> GNU_regex</h3>
+<p>GNU_regex API có nhiều hàm hơn. Với các hàm của GNU_regex các bạn có thể khớp một xâu với mẫu và cũng có thể tìm kiếm mẫu ở trong xâu. Việc sử dụng các hàm này cũng tương tự như việc sử dụng các hàm của POSIX: đầu tiên một mẫu cần phải được biên dịch sử dụng <code>re_compile_pattern</code>, sau đó nhận được pattern buffer và nó được dùng để tìm và khớp. Các hàm sử dụng cho tìm kiếm và khớp là <code>re_search</code> và <code>re_match</code>. Trong trường hợp tìm kiếm thì <code>fastmap</code> có thể được sử dụng để tối ưu việc tìm kiếm. Nếu không có <code>fastmap</code> thuật toán tìm kiếm sẽ khớp các mẫu ở các vị trí liên tiếp nhau trong xâu. Fastmap sẽ chỉ ra vị trí của ký tự bắt đầu tìm kiếm. Fastmap được tạo bằng cách gọi <code>re_compile_fastmap</code>. GNU_regex còn có hàm <code>re_search2</code> và <code>re_match2</code> cho việc tìm kiếm và khớp với những data tách rời. Để giải phóng bộ nhớ của pattern buffer bạn dùng <code>regfree</code>.</p>
+<p>Để biết cách sử dụng chi tiết mời các bạn xem mục [3] ở phần tham khảo.</p>
+<h4 id="ví-dụ-1" class="toc-header"><a class="toc-anchor" href="#ví-dụ-1">¶</a> Ví dụ</h4>
+<pre class="prismjs line-numbers" data-start="1" v-pre="true"><code class="language-cpp">string pattern = "([a-z]+).\\1";
+string str = "top-topcoder|coder";
+
+re_pattern_buffer buffer;
+  char map[256];
+
+buffer.translate = 0;
+buffer.fastmap = map;
+buffer.buffer = 0;
+buffer.allocated = 0;
+
+re_set_syntax(RE_SYNTAX_POSIX_EXTENDED);
+const char* status = re_compile_pattern(pattern.c_str(),pattern.size(),&amp;buffer);
+if (status) {
+    cout &lt;&lt; "Error: " &lt;&lt; status &lt;&lt; endl;
+}
+re_compile_fastmap(&amp;buffer);
+
+struct re_registers regs;
+int ofs = 0;
+if (re_search(&amp;buffer,str.c_str(),str.size(),0,str.size(),&amp;regs)!=-1) {
+  cout &lt;&lt; "Match "
+  cout &lt;&lt; str.substr(regs.start[0],regs.end[0]-regs.start[0])
+  cout &lt;&lt; " found starting at: "
+  cout &lt;&lt; regs.start[0]
+  cout &lt;&lt; " and ending at "
+  cout &lt;&lt; regs.end[0]
+  cout &lt;&lt; endl;
+} else {
+  cout &lt;&lt; "Match not found."
+  cout &lt;&lt; endl;
+}
+regfree(&amp;buffer);
+</code></pre>
+<h2 id="ví-dụ-trong-các-cuộc-thi-srms" class="toc-header"><a class="toc-anchor" href="#ví-dụ-trong-các-cuộc-thi-srms">¶</a> Ví dụ trong các cuộc thi SRMs</h2>
+<p>Các ví dụ phía dưới được viết bằng Java. Bạn nào dùng C++ có thể dùng POSIX hoặc GNU regex APIs để viết các hàm tương đương trong Java (replace_all, split, matches).<br>
+<strong><a href="http://community.topcoder.com/stat?c=problem_statement&amp;pm=2396&amp;rd=4755" class="is-external-link">CyberLine</a> (SRM 187 div 1, level 1)</strong></p>
+<pre class="prismjs line-numbers" data-start="1" v-pre="true"><code class="language-java">import java.util.*;
+public class Cyberline
+{
+  public String lastCyberword(String cyberline)
+  {
+    String[]w=cyberline.replaceAll("-","")
+          .replaceAll("[^a-zA-Z0-9]"," ")
+          .split(" ") ;
+    return w[w.length-1];
+  }
+}
+</code></pre>
+<p><strong><a href="http://community.topcoder.com/stat?c=problem_statement&amp;pm=2912&amp;rd=5849" class="is-external-link">UnLinker</a> (SRM 203 div 2, level 3)</strong></p>
+<pre class="prismjs line-numbers" data-start="1" v-pre="true"><code class="language-java">import java.util.*;
+public class UnLinker
+{
+  public String clean(String text)
+  {
+    String []m = text.split("((http://)?www[.]|http://)[a-zA-Z0-9.]+[.](com|org|edu|info|tv)",-1);
+    String s = m[0] ;
+    for (int i = 1 ; i &lt; m.length ; ++i)
+      s = s + "OMIT" + i + m[i] ;
+    return s ;
+  }
+}
+</code></pre>
+<p><strong><a href="http://community.topcoder.com/stat?c=problem_statement&amp;pm=1779&amp;rd=4575" class="is-external-link">CheatCode</a> (SRM 154 div 1, level 1)</strong></p>
+<pre class="prismjs line-numbers" data-start="1" v-pre="true"><code class="language-java">import java.util.*;
+public class CheatCode {
+  public int[] matches(String keyPresses, String[] codes) {
+    boolean []map = new boolean[codes.length] ;
+    int count = 0 ;
+    for (int i=0;i&lt;codes.length; ++i)
+    {
+      String regex = ".*" ;
+      for (int j=0; j&lt;codes[i].length(); ) {
+        int k = 1;
+        while ((j+k)&lt;codes[i].length() &amp;&amp; codes[i].charAt(j+k)==codes[i].charAt(j)) k++;
+        regex = regex + codes[i].charAt(j) + "{"+k+",}";
+        j+=k;
+      }
+
+      regex = regex + ".*" ;
+      if (keyPresses.matches(regex))
+      {
+        map[i] = true ;
+        count++ ;
+      }
+    }
+    int []res = new int[count] ;
+    int j=0;
+    for (int i= 0 ; i &lt; codes.length; ++i)
+      if(map[i] == true)
+        res[j++]=i ;
+    return res ;
+  }
+}
+</code></pre>
+<h1 id="tham-khảo" class="toc-header"><a class="toc-anchor" href="#tham-khảo">¶</a> Tham khảo</h1>
+<ol>
+<li>Xem trang hướng dẫn của linux: regex(7)</li>
+<li>Xem trang hướng dẫn của linux: regex(3)</li>
+<li><a href="http://docs.freebsd.org/info/regex/regex.info.Programming_with_Regex.html" class="is-external-link">http://docs.freebsd.org/info/regex/regex.info.Programming_with_Regex.html</a></li>
+<li><a href="http://www.regular-expressions.info/" class="is-external-link">http://www.regular-expressions.info/</a></li>
+<li><a href="http://java.sun.com/docs/books/tutorial/extra/regex/" class="is-external-link">http://java.sun.com/docs/books/tutorial/extra/regex/</a></li>
+</ol>
+</div></template><template slot="comments"><div><comments></comments></div></template></page></div><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'8bdd81a99ae3797d',t:'MTcyNTQ0Nzk0Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body></html>
